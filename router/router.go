@@ -5,6 +5,7 @@ import (
 	"os"
 
 	. "template/main/apis"
+	"template/main/middleware/token"
 
 	"github.com/gin-contrib/cors"
 
@@ -32,7 +33,11 @@ func InitRoute() *gin.Engine {
 	})
 
 	apiv1 := router.Group("/api/v1")
-	apiv1.GET("/template", TemplateApi)
+
+	apiv1.Use(token.TokenAuthMiddleware())
+	{
+		apiv1.GET("/template", TemplateApi)
+	}
 
 	return router
 }
