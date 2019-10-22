@@ -1,0 +1,227 @@
+{
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this service is to provide an application\nthat is using plain go code to define an API",
+    "title": "User API.",
+    "version": "0.0.1"
+  },
+  "host": "localhost:8001",
+  "paths": {
+    "/api/v1/template": {
+      "get": {
+        "description": "取得Template",
+        "tags": [
+          "設定檔"
+        ],
+        "summary": "取得Template",
+        "operationId": "GetTemplate",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "uint64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "CreatedAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "UpdatedAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "date-time",
+            "name": "DeletedAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Flex1",
+            "name": "flex1",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Flex2",
+            "name": "flex2",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Flex3",
+            "name": "flex3",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Flex4",
+            "name": "flex4",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "x-go-name": "Flex5",
+            "name": "flex5",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetTemplate"
+          }
+        }
+      },
+      "put": {
+        "description": "更新Template",
+        "tags": [
+          "設定檔"
+        ],
+        "summary": "更新Template",
+        "operationId": "PutTemplate",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Template"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PutTemplate"
+          }
+        }
+      },
+      "post": {
+        "description": "新增Template",
+        "tags": [
+          "設定檔"
+        ],
+        "summary": "新增Template",
+        "operationId": "PostTemplate",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Template"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/PostTemplate"
+          }
+        }
+      }
+    },
+    "/api/v1/template/{id}": {
+      "delete": {
+        "description": "刪除Template",
+        "tags": [
+          "設定檔"
+        ],
+        "summary": "刪除Template",
+        "operationId": "DeleteTemplate",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "x-go-name": "Id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/DeleteTemplate"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Template": {
+      "type": "object",
+      "properties": {
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "flex1": {
+          "type": "string",
+          "x-go-name": "Flex1"
+        },
+        "flex2": {
+          "type": "string",
+          "x-go-name": "Flex2"
+        },
+        "flex3": {
+          "type": "string",
+          "x-go-name": "Flex3"
+        },
+        "flex4": {
+          "type": "string",
+          "x-go-name": "Flex4"
+        },
+        "flex5": {
+          "type": "string",
+          "x-go-name": "Flex5"
+        }
+      },
+      "x-go-package": "template/main/models/template"
+    }
+  },
+  "responses": {
+    "DeleteTemplate": {
+      "description": "更新Template",
+      "schema": {
+        "$ref": "#/definitions/Template"
+      }
+    },
+    "GetTemplate": {
+      "description": "取得當前Template",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Template"
+        }
+      }
+    },
+    "PostTemplate": {
+      "description": "新增Template",
+      "schema": {
+        "$ref": "#/definitions/Template"
+      }
+    },
+    "PutTemplate": {
+      "description": "更新Template",
+      "schema": {
+        "$ref": "#/definitions/Template"
+      }
+    }
+  }
+}

@@ -10,3 +10,12 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+config.yml
+
+gin-bin
+gin.log
+.DS_Store
+main
+
+go.mod
+go.sum
