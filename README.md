@@ -5,11 +5,14 @@
 
 安裝Swagger產生器(Optional)
 > brew tap go-swagger/go-swagger
+
 > brew install go-swagger
+
 > 輸入命令：make generate-swagger產生json文檔
 
 Migration
 > 在migrattion目錄中定義好要migrate的model
+
 > 輸入命令：make migration
 
 1. 初始化專案
