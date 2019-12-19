@@ -5,11 +5,26 @@ database:
   user: "root"
   password: "1qaz2wsx"
   host: "localhost"
-  port: "3306"
-  name: "nine_tailed_fox"
+  port: "3308"
+  name: "sport_bet365"
+  parameters: "charset=utf8mb4&allowNativePasswords=true"
+  maxlifetime: 7200
+  maxopenconns: 150
+  maxidleconns: 50
 
 mode: "debug | test | release"
 
 redis:
-  url: "localhost:6379"
+  url: "redis://localhost:6379"
   password: ""
+  database: 1
+
+cors: 
+  allow: 
+    origins: "http://localhost"
+    headers: "Content-type,Access-Control-Allow-Origin,Authorization,Refresh-token"
+
+jwt: 
+  secret: "3345678"
+  expired: 3
+  refresh: 24

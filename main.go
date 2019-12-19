@@ -1,55 +1,39 @@
-// Package classification User API.
-//
-// The purpose of this service is to provide an application
-// that is using plain go code to define an API
-//
-//      Host: localhost:8001
-//      Version: 0.0.1
-//      Schemes: http
-//
-// swagger:meta
+// @title 保哥-前台-API
+// @version 1.0
+// @description This is a sample server Petstore server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @schemes http https
+// @host 31-review-develop-82qm1o.atavral.ninja
+// @BasePath /api/v1
 package main
 
 import (
-	"fmt"
-	"os"
-	"strings"
-	gorm "template/main/databases"
-	"template/main/redis"
-	route "template/main/router"
+	"bao-bet365-api/database"
+	"bao-bet365-api/model/env"
+	"bao-bet365-api/package/app"
+	_ "bao-bet365-api/package/env"
+	"bao-bet365-api/redis"
 
-	"github.com/spf13/viper"
+	"bao-bet365-api/router"
 )
-
-func LoadConfig() {
-	if _, err := os.Stat("./config.yml"); os.IsNotExist(err) {
-		viper.AutomaticEnv()
-		viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	} else {
-		viper.SetConfigName("config")
-		viper.AddConfigPath(".")
-		err := viper.ReadInConfig()
-		if err != nil { // Handle errors reading the config file
-			panic(fmt.Errorf("Fatal error config file: %s \n", err))
-		}
-	}
-	fmt.Print(viper.GetString("server.port"))
-}
 
 func main() {
 
-	// 讀取設定檔
-	LoadConfig()
+	var appInit app.AppInit
+	appInit.Init()
 
-	// 開啟DB連線
-	gorm.GormOpen()
-	defer gorm.GormClose()
-
-	// 開啟Redis連線
-	redis.Open()
-	defer redis.Client.Close()
+	defer redis.Close()
+	defer database.Close()
 
 	// 啟動Gin
-	app := route.InitRoute()
-	app.Run(viper.GetString("server.port"))
+	app := router.InitRouter()
+	app.Run(env.Enviroment.Server.Port)
 }

@@ -1,21 +1,7 @@
-# golang-gin-template
+# 安裝 Hot Reload的套件
+1. go get github.com/codegangsta/gin
+2. make start
 
-安裝Hot Reload套件(Optional)
-> go get github.com/codegangsta/gin
-
-安裝Swagger產生器(Optional)
-> brew tap go-swagger/go-swagger
-
-> brew install go-swagger
-
-> 輸入命令：make generate-swagger產生json文檔
-
-Migration
-> 在migrattion目錄中定義好要migrate的model
-
-> 輸入命令：make migration
-
-1. 初始化專案
-> go mod init {模組名稱}
-2. 將專案中的import區塊，*template/main*，取代成你的模組名稱
-3. 輸入命令*make start*啟動
+# Log輸出使用 `bao-bet365-api/package/log` 
+1. log.Error("我是error")
+2. log.Info("我是info")

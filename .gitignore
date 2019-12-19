@@ -17,5 +17,6 @@ gin.log
 .DS_Store
 main
 
-go.mod
-go.sum
+#ide setting
+.idea
+logs

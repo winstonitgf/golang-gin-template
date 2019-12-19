@@ -1,0 +1,2711 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Petstore server.",
+        "title": "保哥-前台-API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "31-review-develop-82qm1o.atavral.ninja",
+    "basePath": "/api/v1",
+    "paths": {
+        "/ag/login": {
+            "post": {
+                "description": "登入",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AG"
+                ],
+                "summary": "登入",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/ag/transfer/credit": {
+            "post": {
+                "description": "轉入/轉出",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AG"
+                ],
+                "summary": "轉入/轉出",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/ag/url/forwardgame": {
+            "get": {
+                "description": "取得遊戲轉址網址",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AG"
+                ],
+                "summary": "取得遊戲轉址網址",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/balance": {
+            "get": {
+                "description": "取得帳戶餘額",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "取得帳戶餘額",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "description": "登入",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "登入",
+                "parameters": [
+                    {
+                        "description": "登入資料",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/member.LoginRequestModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/member.LoginResponseModel"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "description": "登出",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "登出",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token的字串",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "description": "重新取得token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "重新取得token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "refresh token的字串",
+                        "name": "refresh_token",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/token.TokenModel"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "description": "註冊",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "註冊",
+                "parameters": [
+                    {
+                        "description": "登入資料",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/member.RegisterRequestModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/member.UcMember"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "post": {
+                "description": "取得token 用戶",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "取得token 用戶",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "token的字串",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/member.UcMember"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/bankcard": {
+            "get": {
+                "description": "银行卡列表",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "银行卡"
+                ],
+                "summary": "银行卡列表",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/bankcard.BankcardResponseModel"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增银行卡",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "银行卡"
+                ],
+                "summary": "新增银行卡",
+                "parameters": [
+                    {
+                        "description": "新增银行卡",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/bankcard.UcMemberBankcard"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/carouselpicture": {
+            "get": {
+                "description": "輪播",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "輪播"
+                ],
+                "summary": "輪播",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "標題",
+                        "name": "title",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/carouselPicture.MdlCarouselPicture"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/casinotransfer": {
+            "get": {
+                "description": "查詢歷史紀錄",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CASINO"
+                ],
+                "summary": "查詢歷史紀錄",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "姓名",
+                        "name": "member_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/casinoTransfer.FnnCasinoTransfer"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/csnbet": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "agbet_handle"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用戶ID",
+                        "name": "member_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/csn.CsnBet"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/deposit": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "第三⽅充值"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "姓名",
+                        "name": "member_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/deposit.FnnDeposit"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "第三⽅充值"
+                ],
+                "summary": "新增",
+                "parameters": [
+                    {
+                        "description": "資料",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deposit.FnnDeposit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/deposit.FnnDeposit"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnnbankcard": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "银行轉帳充值"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "姓名",
+                        "name": "name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bankcard.FnnBankcard"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnnbankcard/deposit/tunnel": {
+            "get": {
+                "description": "查詢銀行卡通道",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "银行轉帳充值"
+                ],
+                "summary": "查詢銀行卡通道",
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/other.DepositTunnelModel"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnngateway": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "第三方充值"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "姓名",
+                        "name": "name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gateway.FnnGateway"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnnrecord": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "會員的入款紀錄"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用戶ID",
+                        "name": "member_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/record.FnnRecord"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnnrecord/memberlist": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "會員的入款紀錄"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用戶ID",
+                        "name": "member_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "筆數",
+                        "name": "take",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "頁數",
+                        "name": "page",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/record.GetMemberRecordListResponseModel"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/fnnremittance": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "銀行充值"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "姓名",
+                        "name": "name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/remittance.FnnRemittance"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "銀行充值"
+                ],
+                "summary": "新增",
+                "parameters": [
+                    {
+                        "description": "資料",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/remittance.FnnRemittance"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/remittance.FnnRemittance"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/notice": {
+            "get": {
+                "description": "查詢",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "公告"
+                ],
+                "summary": "查詢",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "模組",
+                        "name": "module",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "方法",
+                        "name": "method",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "特定方法",
+                        "name": "specified_method",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "模式",
+                        "name": "mode",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/notice.MdlNotice"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/sport/bet": {
+            "post": {
+                "description": "下注",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "下注"
+                ],
+                "summary": "下注",
+                "parameters": [
+                    {
+                        "description": "下注",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/bet.SprBetSubmitQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/http.ResponseSuccess"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/sport/bethandler": {
+            "get": {
+                "description": "下注记录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "下注记录"
+                ],
+                "summary": "下注记录",
+                "parameters": [
+                    {
+                        "description": "下注记录列表",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/bet.SprBetQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bet.SprBet"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/sport/data": {
+            "get": {
+                "description": "球种数据",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "球种数据"
+                ],
+                "summary": "球种数据",
+                "parameters": [
+                    {
+                        "description": "球种数据列表",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/data.SportDataQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.Match"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/sport/oddsCheck": {
+            "get": {
+                "description": "赔率检查",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "赔率检查"
+                ],
+                "summary": "赔率检查",
+                "parameters": [
+                    {
+                        "description": "赔率检查数据",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/odds.CheckOddsQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/odds.CheckOddsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/sport/result": {
+            "get": {
+                "description": "赛果列表",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "赛果"
+                ],
+                "summary": "赛果列表",
+                "parameters": [
+                    {
+                        "description": "赛果列表",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/result.SportResultQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/result.SprChampion"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/withdrawal": {
+            "get": {
+                "description": "查詢取款",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "在线取款"
+                ],
+                "summary": "查詢取款",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用戶ID",
+                        "name": "member_id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/withdrawal.FnnWithdrawal"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增取款",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "在线取款"
+                ],
+                "summary": "新增取款",
+                "parameters": [
+                    {
+                        "description": "新增取款",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/withdrawal.FnnWithdrawalQuery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "失敗",
+                        "schema": {
+                            "$ref": "#/definitions/http.ResponseModel"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "bankcard.BankcardResponseModel": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bankcard.UcMemberBankcard"
+                    }
+                }
+            }
+        },
+        "bankcard.FnnBankcard": {
+            "type": "object",
+            "properties": {
+                "bank_address": {
+                    "type": "string"
+                },
+                "bank_name": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "current_amount": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "img_path": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "string"
+                },
+                "limit_amount": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notice": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "order_is": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "tunnel_type": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                }
+            }
+        },
+        "bankcard.UcMemberBankcard": {
+            "type": "object",
+            "properties": {
+                "bank_account_name": {
+                    "description": "持卡人姓名",
+                    "type": "string"
+                },
+                "bank_name": {
+                    "description": "银行名称",
+                    "type": "string"
+                },
+                "bank_number": {
+                    "description": "银行卡号",
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "member_id": {
+                    "description": "会员id",
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                }
+            }
+        },
+        "bet.SprBet": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "description": "会员账号",
+                    "type": "string"
+                },
+                "away": {
+                    "description": "客队",
+                    "type": "string"
+                },
+                "bet_amount": {
+                    "description": "下注金额",
+                    "type": "integer"
+                },
+                "cancel_type": {
+                    "description": "取消类型 1进球取消, 2红卡取消, 3赔率错误, 4赛事延赛, 5队名错误, 6球员弃赛, 7赛事无PK/ 加时, 8赛事腰斩, 9联赛名称错误, 10取消, 11注单无效",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "ctid": {
+                    "description": "下注该比赛的时间段落 ex 第一节/ 第二节",
+                    "type": "integer"
+                },
+                "current_check_bet_amount": {
+                    "description": "下注时的打码量",
+                    "type": "integer"
+                },
+                "current_score": {
+                    "description": "如是滚球的话 下注时候比赛的当前比分",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "display": {
+                    "description": "是否显示",
+                    "type": "integer"
+                },
+                "final_score": {
+                    "description": "最终比分",
+                    "type": "string"
+                },
+                "gid": {
+                    "description": "赛事gid",
+                    "type": "integer"
+                },
+                "gidm": {
+                    "description": "赛事共同gid",
+                    "type": "integer"
+                },
+                "home": {
+                    "description": "主队",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "league": {
+                    "description": "联赛",
+                    "type": "string"
+                },
+                "match_subtype": {
+                    "description": "球类副类型 RE U P3",
+                    "type": "string"
+                },
+                "match_type": {
+                    "description": "球类类型FT，BK",
+                    "type": "string"
+                },
+                "member_id": {
+                    "description": "会员id",
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "odds": {
+                    "description": "赔率",
+                    "type": "string"
+                },
+                "odds_position": {
+                    "description": "下注主队/客队 H/C",
+                    "type": "string"
+                },
+                "order_id": {
+                    "description": "注单号",
+                    "type": "string"
+                },
+                "parlay": {
+                    "description": "是否为P3",
+                    "type": "integer"
+                },
+                "parlay_list": {
+                    "description": "串关赛事",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bet.SprBet"
+                    }
+                },
+                "play_time": {
+                    "description": "如是滚球的话 下注时候比赛的当前时间",
+                    "type": "string"
+                },
+                "play_timeset": {
+                    "description": "如是滚球的话 下注时候比赛的当前时间段",
+                    "type": "string"
+                },
+                "project": {
+                    "description": "让局/大小 的让球大小球数",
+                    "type": "string"
+                },
+                "result": {
+                    "description": "1输, 2输半, 3和局, 4赢半, 5赢",
+                    "type": "integer"
+                },
+                "return_amount": {
+                    "description": "返水金额",
+                    "type": "integer"
+                },
+                "return_type": {
+                    "description": "0 不返 1时时 2天天 3洗馬",
+                    "type": "integer"
+                },
+                "settle": {
+                    "description": "是否完成结算",
+                    "type": "integer"
+                },
+                "settle_time": {
+                    "description": "结算时间",
+                    "type": "integer"
+                },
+                "sources": {
+                    "description": "1:188 2:hg",
+                    "type": "integer"
+                },
+                "start_time": {
+                    "description": "开始时间",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "0:未确认 1未结 2已结 3取消",
+                    "type": "integer"
+                },
+                "strong": {
+                    "description": "ex 让球的话 是谁让球",
+                    "type": "string"
+                },
+                "subject": {
+                    "description": "下注的赔率编号",
+                    "type": "integer"
+                },
+                "valid_amount": {
+                    "description": "有效流水",
+                    "type": "integer"
+                },
+                "win_amount": {
+                    "description": "可赢金额",
+                    "type": "integer"
+                }
+            }
+        },
+        "bet.SprBetQuery": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "description": "第x天",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "betno(未结算) betdelete(无效注单) betyes(已结算)",
+                    "type": "string"
+                }
+            }
+        },
+        "bet.SprBetSubmitQuery": {
+            "type": "object",
+            "properties": {
+                "bet_data": {
+                    "description": "下注讯息 json",
+                    "type": "string"
+                }
+            }
+        },
+        "carouselPicture.MdlCarouselPicture": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "display": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "mobile_url": {
+                    "type": "string"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "path_mobile": {
+                    "type": "string"
+                },
+                "path_pc": {
+                    "type": "string"
+                },
+                "pc_url": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "casinoTransfer.FnnCasinoTransfer": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "ag_account": {
+                    "type": "string"
+                },
+                "ag_create_time": {
+                    "type": "integer"
+                },
+                "ag_tradeno": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "current_amount": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "member_id": {
+                    "type": "integer"
+                },
+                "method": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "module": {
+                    "type": "integer"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "previous_amount": {
+                    "type": "integer"
+                },
+                "qos": {
+                    "type": "integer"
+                },
+                "qos_time": {
+                    "type": "integer"
+                }
+            }
+        },
+        "csn.CsnBet": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "ag_account": {
+                    "type": "string"
+                },
+                "bet_amount": {
+                    "type": "integer"
+                },
+                "bet_time": {
+                    "type": "integer"
+                },
+                "bill_id": {
+                    "type": "string"
+                },
+                "card": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "device_type": {
+                    "type": "integer"
+                },
+                "flag": {
+                    "type": "integer"
+                },
+                "game_type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "member_id": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "platform": {
+                    "type": "string"
+                },
+                "previous_amount": {
+                    "type": "integer"
+                },
+                "project": {
+                    "type": "string"
+                },
+                "result": {
+                    "type": "string"
+                },
+                "set_id": {
+                    "type": "string"
+                },
+                "settle_time": {
+                    "type": "integer"
+                },
+                "sync_flag": {
+                    "type": "integer"
+                },
+                "table_id": {
+                    "type": "string"
+                },
+                "valid_amount": {
+                    "type": "integer"
+                },
+                "win_amount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.Match": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "\u0026{%!s(token.Pos=741) %!s(*ast.FieldList=\u0026{750 [] 751}) %!s(bool=false)}"
+                    }
+                },
+                "league": {
+                    "type": "string"
+                },
+                "lid": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.SportDataQuery": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "description": "日期",
+                    "type": "string"
+                },
+                "pk": {
+                    "description": "盘口gid",
+                    "type": "string"
+                },
+                "sort": {
+                    "description": "1为时间 2为联赛",
+                    "type": "integer"
+                },
+                "subtype": {
+                    "description": "R P3 T F PD HPD",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "FT BK TN VB BS",
+                    "type": "string"
+                }
+            }
+        },
+        "deposit.FnnDeposit": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "fnn_payment_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "manager_note": {
+                    "type": "string"
+                },
+                "member_id": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "payment_summary": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "gateway.FnnGateway": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "fnn_payment_id": {
+                    "type": "integer"
+                },
+                "g_gateway_id": {
+                    "type": "integer"
+                },
+                "h5": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "max_limit_amount": {
+                    "type": "integer"
+                },
+                "min_limit_amount": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "quick_amount_button": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "tunnel_type": {
+                    "type": "integer"
+                },
+                "web": {
+                    "type": "integer"
+                }
+            }
+        },
+        "http.ResponseModel": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "message_code": {
+                    "type": "integer",
+                    "example": 400
+                }
+            }
+        },
+        "http.ResponseSuccess": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "message_code": {
+                    "type": "integer",
+                    "example": 200
+                }
+            }
+        },
+        "member.LoginRequestModel": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "login_ip": {
+                    "type": "string"
+                },
+                "login_url": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "user_agent": {
+                    "type": "string"
+                }
+            }
+        },
+        "member.LoginResponseModel": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "object",
+                    "$ref": "#/definitions/token.TokenModel"
+                },
+                "user": {
+                    "type": "object",
+                    "$ref": "#/definitions/member.UcMemberSchema"
+                }
+            }
+        },
+        "member.RegisterRequestModel": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "register_ip": {
+                    "type": "string"
+                }
+            }
+        },
+        "member.UcMember": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "agent": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "object",
+                    "$ref": "#/definitions/memberBalance.UcMemberBalance"
+                },
+                "browser": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "hierarchy": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "login_ip": {
+                    "type": "string"
+                },
+                "login_time": {
+                    "type": "integer"
+                },
+                "memberLevel": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "online": {
+                    "type": "integer"
+                },
+                "profile": {
+                    "type": "object",
+                    "$ref": "#/definitions/memberProfile.UcMemberProfile"
+                },
+                "register_from": {
+                    "type": "string"
+                },
+                "register_ip": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "total_login_count": {
+                    "type": "integer"
+                },
+                "total_login_count_by_day": {
+                    "type": "integer"
+                },
+                "total_login_count_by_today": {
+                    "type": "integer"
+                },
+                "total_login_time": {
+                    "type": "integer"
+                },
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
+        "member.UcMemberSchema": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "ag_amount": {
+                    "type": "number"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "hierarchy": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "last_login_time": {
+                    "type": "string"
+                },
+                "memberLevel": {
+                    "type": "integer"
+                },
+                "member_code": {
+                    "description": "會員編號",
+                    "type": "string"
+                },
+                "mobile": {
+                    "description": "手機號",
+                    "type": "string"
+                },
+                "real_name": {
+                    "description": "真實姓名",
+                    "type": "string"
+                },
+                "uid": {
+                    "type": "string"
+                }
+            }
+        },
+        "memberBalance.UcMemberBalance": {
+            "type": "object",
+            "properties": {
+                "ag_amount": {
+                    "description": "AG金額",
+                    "type": "integer"
+                },
+                "amount": {
+                    "description": "正式金額",
+                    "type": "integer"
+                },
+                "currency": {
+                    "description": "货币种类",
+                    "type": "string"
+                },
+                "member_id": {
+                    "description": "会员id",
+                    "type": "integer"
+                },
+                "trial_amount": {
+                    "description": "試玩金額",
+                    "type": "integer"
+                }
+            }
+        },
+        "memberProfile.UcMemberProfile": {
+            "type": "object",
+            "properties": {
+                "ag_module": {
+                    "description": "允许使用AG模块？",
+                    "type": "integer"
+                },
+                "deposit_amount": {
+                    "description": "儲值總額",
+                    "type": "integer"
+                },
+                "deposit_count": {
+                    "description": "儲值次數",
+                    "type": "integer"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "lottery_module": {
+                    "description": "允许使用彩票模块？",
+                    "type": "integer"
+                },
+                "member_code": {
+                    "description": "會員編號",
+                    "type": "string"
+                },
+                "member_id": {
+                    "description": "会员id",
+                    "type": "integer"
+                },
+                "mobile": {
+                    "description": "手機號",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "備註",
+                    "type": "string"
+                },
+                "qq": {
+                    "description": "QQ",
+                    "type": "string"
+                },
+                "real_name": {
+                    "description": "真實姓名",
+                    "type": "string"
+                },
+                "sport_module": {
+                    "description": "允许使用体育模块？",
+                    "type": "integer"
+                },
+                "weixin": {
+                    "description": "微信",
+                    "type": "string"
+                },
+                "withdrawal_amount": {
+                    "description": "提款總額",
+                    "type": "integer"
+                },
+                "withdrawal_code": {
+                    "description": "提款密碼",
+                    "type": "string"
+                },
+                "withdrawal_count": {
+                    "description": "提款次數",
+                    "type": "integer"
+                }
+            }
+        },
+        "notice.MdlNotice": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image_path": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "integer"
+                },
+                "mode": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "module": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "type": "integer"
+                },
+                "specified_method": {
+                    "type": "integer"
+                },
+                "specified_user_account": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "integer"
+                },
+                "stop_time": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "user_type": {
+                    "type": "integer"
+                }
+            }
+        },
+        "odds.CheckOddsQuery": {
+            "type": "object",
+            "properties": {
+                "match": {
+                    "description": "[{\"id\":\"\",\"ctid\":109,\"gid\":\"3687315\",\"oddsname\":\"h2a1\"}]  json 格式",
+                    "type": "string"
+                },
+                "subtype": {
+                    "description": "R P3 T F PD HPD",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "FT BK TN VB BS",
+                    "type": "string"
+                }
+            }
+        },
+        "odds.CheckOddsResponse": {
+            "type": "object",
+            "properties": {
+                "gid": {
+                    "description": "赛事id",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "赔率唯一id",
+                    "type": "string"
+                },
+                "odds": {
+                    "description": "赔率",
+                    "type": "number"
+                },
+                "ratio": {
+                    "description": "赔率",
+                    "type": "string"
+                }
+            }
+        },
+        "other.DepositBankcardTunnelModel": {
+            "type": "object",
+            "properties": {
+                "ali_pay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bankcard.FnnBankcard"
+                    }
+                },
+                "other": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bankcard.FnnBankcard"
+                    }
+                },
+                "usf": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bankcard.FnnBankcard"
+                    }
+                },
+                "weixin": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bankcard.FnnBankcard"
+                    }
+                }
+            }
+        },
+        "other.DepositGatewayTunnelModel": {
+            "type": "object",
+            "properties": {
+                "alipay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "baidu": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "cft": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "jingdong": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "other": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "qq": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "unionpay": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                },
+                "weixin": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gateway.FnnGateway"
+                    }
+                }
+            }
+        },
+        "other.DepositTunnelModel": {
+            "type": "object",
+            "properties": {
+                "bankcard": {
+                    "type": "object",
+                    "$ref": "#/definitions/other.DepositBankcardTunnelModel"
+                },
+                "gateway": {
+                    "type": "object",
+                    "$ref": "#/definitions/other.DepositGatewayTunnelModel"
+                }
+            }
+        },
+        "record.FnnRecord": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "current_amount": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "manager_id": {
+                    "type": "integer"
+                },
+                "member_id": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "previous_amount": {
+                    "type": "integer"
+                },
+                "subtype": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "integer"
+                }
+            }
+        },
+        "record.GetMemberRecordListResponseModel": {
+            "type": "object",
+            "properties": {
+                "deposit_total": {
+                    "type": "integer"
+                },
+                "deposits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/deposit.FnnDeposit"
+                    }
+                },
+                "record_total": {
+                    "type": "integer"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/record.FnnRecord"
+                    }
+                },
+                "remittance_total": {
+                    "type": "integer"
+                },
+                "remittances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/remittance.FnnRemittance"
+                    }
+                }
+            }
+        },
+        "remittance.FnnRemittance": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "integer"
+                },
+                "bank_name": {
+                    "type": "string"
+                },
+                "bankcard_id": {
+                    "type": "integer"
+                },
+                "bankcard_summary": {
+                    "type": "string"
+                },
+                "confirm_time": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "manager_note": {
+                    "type": "string"
+                },
+                "member_id": {
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "operator": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "result.SportResultQuery": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "description": "第x天",
+                    "type": "integer"
+                },
+                "option": {
+                    "description": "1 赛事 2 冠军",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "FT BK TN VB BS",
+                    "type": "string"
+                }
+            }
+        },
+        "result.SprChampion": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "新增时间",
+                    "type": "integer"
+                },
+                "datetime": {
+                    "description": "開始日期",
+                    "type": "string"
+                },
+                "gid": {
+                    "description": "赛事ID",
+                    "type": "integer"
+                },
+                "gidm": {
+                    "description": "賽事共同id",
+                    "type": "integer"
+                },
+                "is_close": {
+                    "description": "是否關閉比賽",
+                    "type": "integer"
+                },
+                "league": {
+                    "description": "聯賽",
+                    "type": "string"
+                },
+                "match_name": {
+                    "description": "比賽名稱",
+                    "type": "string"
+                },
+                "mid": {
+                    "description": "比賽id",
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "description": "更新至DB的时间",
+                    "type": "integer"
+                },
+                "open": {
+                    "description": "是否開啟",
+                    "type": "integer"
+                },
+                "result": {
+                    "description": "賽果",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "開始時間",
+                    "type": "string"
+                },
+                "stype": {
+                    "description": "球種",
+                    "type": "string"
+                },
+                "team_count": {
+                    "description": "共有多少隊伍",
+                    "type": "integer"
+                },
+                "team_data": {
+                    "description": "比賽賠率",
+                    "type": "string"
+                }
+            }
+        },
+        "result.SprResult": {
+            "type": "object",
+            "properties": {
+                "a_score_1h": {
+                    "description": "下半客队比分",
+                    "type": "string"
+                },
+                "a_score_2h": {
+                    "description": "下半客队比分",
+                    "type": "string"
+                },
+                "a_score_ft": {
+                    "description": "最终客队比分",
+                    "type": "string"
+                },
+                "a_score_ftg": {
+                    "description": "总局数客队比分",
+                    "type": "string"
+                },
+                "a_score_ot": {
+                    "description": "加時客隊",
+                    "type": "string"
+                },
+                "a_score_q1": {
+                    "description": "第1盤客队比分",
+                    "type": "string"
+                },
+                "a_score_q2": {
+                    "description": "第2盤客队比分",
+                    "type": "string"
+                },
+                "a_score_q3": {
+                    "description": "第3盤客队比分",
+                    "type": "string"
+                },
+                "a_score_q4": {
+                    "description": "第4盤客队比分",
+                    "type": "string"
+                },
+                "a_score_q5": {
+                    "description": "第5盤客队比分",
+                    "type": "string"
+                },
+                "away": {
+                    "description": "客队",
+                    "type": "string"
+                },
+                "away_en": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "新增时间",
+                    "type": "integer"
+                },
+                "gid": {
+                    "description": "赛事ID",
+                    "type": "integer"
+                },
+                "h_score_1h": {
+                    "description": "上半主队比分",
+                    "type": "string"
+                },
+                "h_score_2h": {
+                    "description": "下半主队比分",
+                    "type": "string"
+                },
+                "h_score_ft": {
+                    "description": "最终主队比分",
+                    "type": "string"
+                },
+                "h_score_ftg": {
+                    "description": "总局数主队比分",
+                    "type": "string"
+                },
+                "h_score_ot": {
+                    "description": "加時主隊",
+                    "type": "string"
+                },
+                "h_score_q1": {
+                    "description": "第1盤主队比分",
+                    "type": "string"
+                },
+                "h_score_q2": {
+                    "description": "第2盤主队比分",
+                    "type": "string"
+                },
+                "h_score_q3": {
+                    "description": "第3盤主队比分",
+                    "type": "string"
+                },
+                "h_score_q4": {
+                    "description": "第4盤主队比分",
+                    "type": "string"
+                },
+                "h_score_q5": {
+                    "description": "第5盤主队比分",
+                    "type": "string"
+                },
+                "home": {
+                    "description": "主队",
+                    "type": "string"
+                },
+                "home_en": {
+                    "type": "string"
+                },
+                "league": {
+                    "description": "联赛",
+                    "type": "string"
+                },
+                "modified_at": {
+                    "description": "更新至DB的时间",
+                    "type": "integer"
+                },
+                "more": {
+                    "type": "string"
+                },
+                "source": {
+                    "description": "1:188, 2:皇冠",
+                    "type": "integer"
+                },
+                "start_date": {
+                    "description": "开始日期",
+                    "type": "string"
+                },
+                "start_time": {
+                    "description": "开始时间",
+                    "type": "string"
+                },
+                "stype": {
+                    "description": "球种",
+                    "type": "string"
+                }
+            }
+        },
+        "token.TokenModel": {
+            "type": "object",
+            "properties": {
+                "refresh_token": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "withdrawal.FnnWithdrawal": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "description": "会员账号",
+                    "type": "string"
+                },
+                "amount": {
+                    "description": "会员金额",
+                    "type": "integer"
+                },
+                "bankcard_id": {
+                    "description": "银行号码",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "member_id": {
+                    "description": "会员id",
+                    "type": "integer"
+                },
+                "modified_at": {
+                    "type": "integer"
+                },
+                "order_id": {
+                    "description": "订单编号",
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "订单状态",
+                    "type": "integer"
+                }
+            }
+        },
+        "withdrawal.FnnWithdrawalQuery": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "取款金额",
+                    "type": "integer"
+                },
+                "bankcard_id": {
+                    "description": "银行ID",
+                    "type": "integer"
+                },
+                "withdrawal_code": {
+                    "description": "会员取款密码",
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

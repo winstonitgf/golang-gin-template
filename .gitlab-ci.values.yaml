@@ -1,0 +1,9 @@
+service:
+  internalPort: 3000
+ingress:
+  tls:
+    enabled: false
+    secretName: ""
+  annotations:
+    kubernetes.io/tls-acme: "false"
+    kubernetes.io/ingress.class: "traefik"
