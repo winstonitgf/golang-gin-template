@@ -1,0 +1,29 @@
+database:
+  client: "mysql"
+  max_idle: 10
+  max_life_time: "1h"
+  max_open_conn: 100
+  user: "root"
+  password: "1qaz2wsx"
+  host: "localhost"
+  name: "99live"
+  port: "3306"
+  params: "charset=utf8mb4&parseTime=True&loc=Asia%2fTaipei"
+  log_enable: 0
+
+mode: debug
+
+redis:
+  protocol: "tcp"
+  url: "redis://localhost:6379"
+  password: ""
+  database: 0
+  idle: 3
+  active: 5
+  expire: 24
+  unit: 3600
+
+cors:
+  allow:
+    headers: "Content-type Access-Control-Allow-Origin Authorization Refresh-token"
+  default_allow_url: "http://localhost:8080"
