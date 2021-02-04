@@ -3,6 +3,8 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 
+	. "golang-startup/controller"
+
 	_ "golang-startup/docs"
 	"golang-startup/global"
 
@@ -18,12 +20,13 @@ func LoadRouter() *gin.Engine {
 	// swagger
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	// apiv1 := router.Group("api/v1")
-	// {
-	// 	apiAuth := apiv1.Group("auth")
-	// 	{
-	// 	}
-	// }
+	apiv1 := router.Group("api/v1")
+	{
+		apiAuth := apiv1.Group("auth")
+		{
+			apiAuth.POST("login", Login)
+		}
+	}
 
 	return router
 }

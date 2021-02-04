@@ -1,3 +1,27 @@
+definitions:
+  models.User:
+    properties:
+      account:
+        type: string
+      created_at:
+        type: integer
+      deleted_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      nickname:
+        type: string
+      phone:
+        type: string
+      role_id:
+        type: integer
+      token:
+        type: string
+      updated_at:
+        type: integer
+    type: object
 host: staging-api.99live.live
 info:
   contact:
@@ -8,7 +32,29 @@ info:
   termsOfService: http://swagger.io/terms/
   title: Golang API
   version: "1.0"
-paths: {}
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - ApiKeyAuth: []
+      summary: 登入
+      tags:
+      - OAUTH
 schemes:
 - https
 securityDefinitions:

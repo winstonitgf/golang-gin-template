@@ -1,7 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"golang-startup/authorize"
+	"golang-startup/cache"
+	"golang-startup/databases"
 	"golang-startup/global"
 	"golang-startup/router"
 	"golang-startup/utils"
@@ -26,30 +28,17 @@ import (
 // @schemes https
 func main() {
 
-	// 初始化 env
 	utils.LoadEnvironment()
-	fmt.Println("參數初始化成功...")
+
+	databases.LoadDatabase()
+	mysql, _ := global.Mysql.DB()
+	defer mysql.Close()
+
+	cache.LoadRedis()
+	defer global.Redis.Close()
+
+	authorize.LoadCasbin()
 
 	r := router.LoadRouter()
 	r.Run(global.EnvConfig.Server.Port)
-
-	// cache.InitRedisPool()
-	// defer cache.RedisPool.Close()
-
-	// // 初始化 db
-	// database.InitDatabasePool()
-	// // database.Migration()
-	// sqlDB, _ := database.Mysql.DB()
-	// defer sqlDB.Close()
-	// fmt.Println("資料庫始化成功...")
-
-	// // casbin init
-	// var casbinService casbinLib.CasbinService
-	// casbinService.Init()
-
-	// // 初始化 db
-	// migration.InitTables()
-
-	// r := router.Router()
-	// r.Run(":3000")
 }
