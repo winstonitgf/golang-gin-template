@@ -33,6 +33,7 @@ type database struct {
 	Params      string
 	Port        string
 	LogEnable   int
+	IsMigrate   bool
 }
 
 type redisModel struct {

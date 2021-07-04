@@ -1,4 +1,11 @@
 definitions:
+  models.BasketballTeam:
+    properties:
+      name:
+        type: string
+      score:
+        type: integer
+    type: object
   models.User:
     properties:
       account:
@@ -6,7 +13,7 @@ definitions:
       created_at:
         type: integer
       deleted_at:
-        type: string
+        type: integer
       email:
         type: string
       id:
@@ -22,18 +29,69 @@ definitions:
       updated_at:
         type: integer
     type: object
-host: staging-api.99live.live
+host: localhost:8887
 info:
   contact:
     email: support@swagger.io
     name: Winston
   description: Golang API 專案描述
-  license: {}
   termsOfService: http://swagger.io/terms/
   title: Golang API
   version: "1.0"
 paths:
-  /auth/login:
+  /api/v1/redis/getset/{id}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: RedisGetSET
+      tags:
+      - Redis
+  /api/v1/redis/hmgetset/{id}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: RedisHMGetSET
+      tags:
+      - Redis
+  /api/v1/redis/listgetset:
     post:
       consumes:
       - application/json
@@ -44,18 +102,63 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              type: string
             type: array
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/models.User'
+            type: string
       security:
       - ApiKeyAuth: []
-      summary: 登入
+      summary: RedisListGetSet
       tags:
-      - OAUTH
+      - Redis
+  /api/v1/redis/setgetset:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: integer
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: RedisSetGetSet
+      tags:
+      - Redis
+  /api/v1/redis/sortedsetgetset:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.BasketballTeam'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: RedisSortedsetGetSet
+      tags:
+      - Redis
 schemes:
+- http
 - https
 securityDefinitions:
   ApiKeyAuth:

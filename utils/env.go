@@ -43,6 +43,7 @@ func viperConfigToModel() {
 	config.Database.Params = viper.GetString("database.params")
 	config.Database.Port = viper.GetString("database.port")
 	config.Database.LogEnable = viper.GetInt("database.log_enable")
+	config.Database.IsMigrate = viper.GetBool("database.is_migrate")
 
 	config.Server.Mode = viper.GetString("server.mode")
 	config.Server.Port = viper.GetString("server.port")

@@ -22,9 +22,13 @@ func LoadRouter() *gin.Engine {
 
 	apiv1 := router.Group("api/v1")
 	{
-		apiAuth := apiv1.Group("auth")
+		apiAuth := apiv1.Group("redis")
 		{
-			apiAuth.POST("login", Login)
+			apiAuth.POST("getset/:id", RedisGetSET)
+			apiAuth.POST("hmgetset/:id", RedisHMGetSET)
+			apiAuth.POST("listgetset", RedisListGetSet)
+			apiAuth.POST("setgetset", RedisSetGetSet)
+			apiAuth.POST("sortedsetgetset", RedisSortedSetGetSet)
 		}
 	}
 

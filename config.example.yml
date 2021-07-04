@@ -6,12 +6,15 @@ database:
   user: "root"
   password: "1qaz2wsx"
   host: "localhost"
-  name: "99live"
+  name: "cht"
   port: "3306"
   params: "charset=utf8mb4&parseTime=True&loc=Asia%2fTaipei"
   log_enable: 0
+  is_migrate: "true"
 
-mode: debug
+server:
+  mode: debug
+  port: 8888
 
 redis:
   protocol: "tcp"

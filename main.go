@@ -1,7 +1,6 @@
 package main
 
 import (
-	"golang-startup/authorize"
 	"golang-startup/cache"
 	"golang-startup/databases"
 	"golang-startup/global"
@@ -17,7 +16,7 @@ import (
 // @contact.name Winston
 // @contact.email support@swagger.io
 
-// @host staging-api.99live.live
+// @host localhost:8887
 
 // @query.collection.format multi
 
@@ -25,7 +24,7 @@ import (
 // @in header
 // @name Authorization
 
-// @schemes https
+// @schemes http https
 func main() {
 
 	utils.LoadEnvironment()
@@ -34,10 +33,12 @@ func main() {
 	mysql, _ := global.Mysql.DB()
 	defer mysql.Close()
 
+	databases.Migrate()
+
 	cache.LoadRedis()
 	defer global.Redis.Close()
 
-	authorize.LoadCasbin()
+	// authorize.LoadCasbin()
 
 	r := router.LoadRouter()
 	r.Run(global.EnvConfig.Server.Port)
